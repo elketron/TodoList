@@ -8,15 +8,15 @@ export default defineConfig({
   server: {
     port: 44495,
     https: true,
-    strictPort : true,
+    strictPort: true,
     proxy: {
-      '/api' : {
-        target: 'https://localhost:7153',
+      '/api': {
+        target: 'https://localhost:7042',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '/api')
       }
-    } 
+    }
   }
 })
 

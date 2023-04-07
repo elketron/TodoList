@@ -2,9 +2,11 @@ using TodoListServices.Services;
 using TodoListData.Models;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("api/todolist")]
+namespace Frontend.Controllers;
+
+[Route("/api/todolist")]
 [ApiController]
-class TodoListController : ControllerBase
+public class TodoListController : ControllerBase
 {
     private readonly TodoListService _service;
 
@@ -50,4 +52,9 @@ class TodoListController : ControllerBase
 
         return NotFound();
     }
+
+    //[HttpPost("{id}")]
+    //public ActionResult Done(Guid id) {
+    // }
+
 }

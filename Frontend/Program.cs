@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<TodoListContext>(
     options => options.UseSqlServer(
@@ -31,6 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.MapGet("api/test", () => new {Test = "hello"});
 
 app.MapControllerRoute(
     name: "default",
