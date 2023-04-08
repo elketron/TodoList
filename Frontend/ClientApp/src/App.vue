@@ -7,13 +7,13 @@ import TodoItem from "./components/TodoItem.vue";
 import AddItem from "./components/AddItem.vue";
 
 const todo_items = ref<Array<Item>>();
-function getAll() {
-  axios.get("/api/todolist").then(function (response) {
+async function getAll() {
+  await axios.get("/api/todolist").then(function (response) {
     todo_items.value = response.data;
   })
 }
 
-function Add(title: string, end_date: string) {
+async function Add(title: string, end_date: string) {
   const item: Item = {
     id: uuid(),
     title: title,
@@ -21,16 +21,25 @@ function Add(title: string, end_date: string) {
     endDate: end_date
   }
 
-  axios.post("/api/todolist", item)
-  getAll()
+  await axios.post("/api/todolist", item).catch((error) => console.error(error))
+  await getAll()
 }
 
-function Delete(id: string) {
-  axios.delete(`/api/todolist/${id}`);
-  getAll()
+async function Delete(id: string) {
+  await axios.delete(`/api/todolist/${id}`)
+    .catch((error) => console.error(error));
+  await getAll()
 }
 
-function Done(id: string) {
+async function Done(id: string) {
+  let item = todo_items.value?.find(i => i.id === id);
+
+  if (item != undefined) {
+    item.done = !item.done;
+    await axios.post("/api/todolist/done", item)
+      .catch((error) => console.error(error)
+      )
+  }
 
 }
 

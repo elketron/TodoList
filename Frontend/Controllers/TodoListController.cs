@@ -53,8 +53,14 @@ public class TodoListController : ControllerBase
         return NotFound();
     }
 
-    //[HttpPost("{id}")]
-    //public ActionResult Done(Guid id) {
-    // }
+    [HttpPost("done")]
+    public ActionResult Done(TodoItem item)
+    {
+        if (_service.Update(item)) {
+            return Ok();
+        }
+
+        return NotFound();
+    }
 
 }

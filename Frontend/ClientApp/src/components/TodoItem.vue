@@ -27,6 +27,7 @@ function formatDate(date_string: string | undefined) {
   <td>{{ todo_item?.done }}</td>
   <td>
     <input type="button" name="delete" id="delete" value="Delete" @click="() => emit('delete', todo_item?.id)">
-    <input type="button" name="done" id="done" value="Done" @click="() => emit('done', todo_item?.id)">
+    |
+    <input type="button" name="done" id="done" value="Toggle Done" @click="() => emit('done', todo_item?.id)">
   </td>
 </template>
