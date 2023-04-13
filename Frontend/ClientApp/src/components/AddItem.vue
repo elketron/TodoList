@@ -8,15 +8,18 @@ const end_date = ref<string>();
 function SubmitForm() {
   const Title = title.value;
   const EndDate = end_date.value;
-  const checkDate = new Date(EndDate)
-  const currentDay = new Date();
+  if (EndDate !== undefined) {
+    const checkDate = new Date(EndDate)
+    const currentDay = new Date();
 
-  console.log(EndDate)
+    console.log(EndDate)
 
-  if (checkDate > currentDay) {
-    emit("add", Title, EndDate);
+    if (checkDate > currentDay) {
+      emit("add", Title, EndDate);
+    }
+
+
   }
-
 
 }
 </script>

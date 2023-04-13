@@ -11,6 +11,8 @@
     <SpaProxyServerUrl>https://localhost:44495</SpaProxyServerUrl>
     <SpaProxyLaunchCommand>yarn dev</SpaProxyLaunchCommand>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ContainerImageName>todolist</ContainerImageName>
+    <ContainerImageTag>latest</ContainerImageTag>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +27,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="0.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,7 +59,7 @@
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
-      <DistFiles Include="$(SpaRoot)build\**" />
+      <DistFiles Include="$(SpaRoot)dist\**" />
       <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

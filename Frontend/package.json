@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "@types/uuid": "^9.0.1"
+    "@tailwindcss/language-server": "^0.0.13",
+    "@types/uuid": "^9.0.1",
+    "global": "^4.4.0",
+    "vue-language-server": "^0.0.67"
   }
 }
