@@ -1,10 +1,18 @@
 version: "3.2"
 services:
-  sql-server-db:
-    container_name: sql-server-db
+  todolist:
+    image: todolist
+    container_name: todolist_application
+    ports:
+      - "5000:80"
+
+  todolistdb:
+    container_name: todolistdb
     image: mcr.microsoft.com/mssql/server:latest
     ports:
       - "1433:1433"
     environment:
       SA_PASSWORD: "MyVeryStrong<Password(!)>"
       ACCEPT_EULA: "Y"
+    volumes:
+      - ./todolist_db_init.sql:/docker-entrypoint-initdb.d/init.sql
