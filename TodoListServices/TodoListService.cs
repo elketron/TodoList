@@ -34,7 +34,7 @@ public class TodoListService
         return false;
     }
 
-    public void Update(TodoItem item)
+    public bool Update(TodoItem item)
     {
         var context_item = GetById(item.Id);
 
@@ -42,7 +42,10 @@ public class TodoListService
         {
             context_item = item;
             _context.SaveChanges();
+            return true;
         }
+
+        return false;
     }
 
     public void Add(TodoItem item)
